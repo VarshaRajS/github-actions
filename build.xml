@@ -1,8 +1,8 @@
 <project name="StringCompression" default="compile" basedir=".">
     
-    <property name="src.dir" value="src"/>
+    <property name="stringCompression.java.dir" value="src"/>
     <property name="build.dir" value="build"/>
-    <property name="stringCompression.class" value="Main"/> 
+    <property name="main.class" value="stringCompression"/> 
 
     <target name="init">
         <mkdir dir="${build.dir}"/>
