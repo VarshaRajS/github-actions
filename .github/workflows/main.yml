@@ -27,7 +27,7 @@ jobs:
 
     # Step 3: Compile the Java code
     - name: Compile Java code
-      run: javac stringCompression.java
+      run: javac StringCompression.java
 
     # Step 4: Run the compiled Java code
     - name: Run Java application
