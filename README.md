@@ -1,3 +1,3 @@
 # github-actions
 
-terraform and actions
+terraform and github actions
