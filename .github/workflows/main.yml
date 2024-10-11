@@ -20,11 +20,12 @@ jobs:
             terraform_version: 1.5.0
 
         - name: Configure AWS Credentials
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           run: |
-            echo "[default]" > ~/.aws/config
-            echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/config
-            echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/config
-
+            echo "AWS_ACCESS_KEY_ID is set"
+            echo "AWS_SECRET_ACCESS_KEY is set"
 
         - name: Initialize terraform
           run: terraform init
