@@ -1,18 +1,18 @@
-terraform{
-  required_providers{
-  aws = {
-    source  = "hashicorp/aws"
-    version = "~> 5.0"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
   }
 }
 
-# configure aws provider
+# Configure AWS provider (credentials will be provided through environment variables)
 provider "aws" {
   region = "us-east-1"
 }
 
-# creating the s3 bucket
+# Create the S3 bucket
 resource "aws_s3_bucket" "my_bucket" {
   bucket = "my-test-bucket"
 
@@ -20,25 +20,29 @@ resource "aws_s3_bucket" "my_bucket" {
     Name        = "My bucket"
     Environment = "Dev"
   }
+}
 
-# enable static website hosting
-  website {
-    index_document = "index.html"
+# Enable static website hosting as a separate resource
+resource "aws_s3_bucket_website_configuration" "my_bucket_website" {
+  bucket = aws_s3_bucket.my_bucket.id
+
+  index_document {
+    suffix = "index.html"
   }
 }
 
-# creating and attaching bucket ploicy
+# Create and attach bucket policy
 resource "aws_s3_bucket_policy" "my_bucket_policy" {
-bucket = aws_s3_bucket.my_bucket.id
+  bucket = aws_s3_bucket.my_bucket.id
 
-policy = jsonencode({
-    Version = "2012-10-17"
+  policy = jsonencode({
+    Version = "2012-10-17",
     Statement = [
       {
-        Sid      = "PublicReadGetObject"
-        Effect   = "Allow"
-        Principal = "*"
-        Action   = "s3:GetObject"
+        Sid      = "PublicReadGetObject",
+        Effect   = "Allow",
+        Principal = "*",
+        Action   = "s3:GetObject",
         Resource = "${aws_s3_bucket.my_bucket.arn}/*"
       }
     ]
@@ -47,9 +51,8 @@ policy = jsonencode({
 
 # Output the bucket website URL
 output "bucket_website_url" {
-  value = aws_s3_bucket.my_bucket.website_endpoint
+  value = "http://${aws_s3_bucket.my_bucket.bucket}.s3-website-${var.region}.amazonaws.com/"
 }
-
 
 
 
