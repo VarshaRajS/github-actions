@@ -19,12 +19,19 @@ jobs:
           with:
             terraform_version: 1.5.0
 
-        - name: Configure AWS Credentials 
-          uses: actions/setup-aws@v2
+        - name: setup awscli
+          uses: hsupu@setup-awscli@v1
           with:
-            access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            region: us-east-1 
+             # these are default values
+            install-dir: /usr/local/aws-cli
+            bin-dir: /usr/local/bin
+
+        - name: Configure AWS Credentials 
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          run: |
+            echo "AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY is set"
 
         - name: Initialize terraform
           run: terraform init
