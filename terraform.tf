@@ -18,4 +18,9 @@ resource "aws_s3_bucket" "example" {
     Name        = "My bucket"
     Environment = "Dev"
   }
+
+# enable static website hosting
+  website {
+    index_document = "index.html"
+  }
 }
