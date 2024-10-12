@@ -69,6 +69,13 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
           "arn:aws:s3:::my-test-bucket-1709200316042000-bd",
           "arn:aws:s3:::my-test-bucket-1709200316042000-bd/*"
         ]
+      },
+      {
+        Sid      = "PublicReadGetObject",
+        Effect   = "Allow",
+        Principal = "*",
+        Action   = "s3:GetObject",
+        Resource = "arn:aws:s3:::my-test-bucket-1709200316042000-bd/*"
       }
     ]
   })
