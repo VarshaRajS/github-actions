@@ -1,7 +1,7 @@
 variable "region" {
   description = "The AWS region to deploy resources."
   type        = string
-  default     = "us-east-1"  
+  default     = "us-west-1"  
 }
 
 terraform {
@@ -15,7 +15,7 @@ terraform {
 
 # Configure AWS provider (credentials will be provided through environment variables)
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-1"
 }
 
 # Create the S3 bucket
