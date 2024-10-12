@@ -20,7 +20,7 @@ provider "aws" {
 
 # Create the S3 bucket
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-test-bucket-17092003"
+  bucket = "my-test-bucket-1709200316042000"
 
   tags = {
     Name        = "My bucket"
