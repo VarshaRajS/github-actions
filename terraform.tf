@@ -55,11 +55,20 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
     Version = "2012-10-17",
     Statement = [
       {
-        Sid      = "PublicReadGetObject",
         Effect   = "Allow",
-        Principal = "*",
-        Action   = "s3:GetObject",
-        Resource = "${aws_s3_bucket.my_bucket.arn}/*"
+        Principal = {
+          "AWS": [
+            "arn:aws:iam::767398111149:user/github-actions"
+          ]
+        },
+        Action   = [
+          "s3:GetObject",
+          "s3:ListBucket"
+        ],
+        Resource = [
+          "arn:aws:s3:::my-test-bucket-1709200316042000-bd",
+          "arn:aws:s3:::my-test-bucket-1709200316042000-bd/*"
+        ]
       }
     ]
   })
