@@ -56,7 +56,11 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
     Statement = [
       {
         Effect   = "Allow",
-        Principal = "*",
+        Principal = {
+          "AWS": [
+            "arn:aws:iam::767398111149:user/github-actions"
+          ]
+        },
         Action   = [
           "s3:GetObject",
           "s3:ListBucket"
