@@ -36,13 +36,6 @@ jobs:
           if: github.ref == 'refs/heads/main'
           run: terraform apply -auto-approve
 
-        # Upload index.html, CSS, and JS files to S3
-        - name: Upload website files to S3
-          run: |
-           aws s3 cp index.html s3://my-test-bucket-1709200316042000-bd/index.html
-           aws s3 cp styles.css s3://my-test-bucket-1709200316042000-bd/styles.css
-           aws s3 cp script.js s3://my-test-bucket-1709200316042000-bd/script.js 
-
         - name: Output Bucket Website URL
           run: echo "S3 Bucket Website URL:${{ steps.terraform.outputs.bucket_website_url }}"
            
