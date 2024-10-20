@@ -55,13 +55,6 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect: "Allow",
-        Principal: "*",  # This makes the bucket publicly accessible
-        Action: "s3:GetObject",
-        Resource: "arn:aws:s3:::my-test-bucket-1709200316042000-bd/*"
-      },
-
-      {
         Effect   = "Allow",
         Principal = {
           "AWS": [
