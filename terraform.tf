@@ -20,7 +20,7 @@ provider "aws" {
 
 # Create the S3 bucket
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "my-test-bucket-1709200316042000-bd"
+  bucket = "my-test-bucket-1709200316042000-bd1"
 
   tags = {
     Name        = "My bucket"
@@ -63,7 +63,8 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
         },
         Action   = [
           "s3:GetObject",
-          "s3:ListBucket"
+          "s3:ListBucket",
+          "s3:PutObject"
         ],
         Resource = [
           "arn:aws:s3:::my-test-bucket-1709200316042000-bd",
