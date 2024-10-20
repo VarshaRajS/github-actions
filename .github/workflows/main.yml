@@ -36,6 +36,10 @@ jobs:
           if: github.ref == 'refs/heads/main'
           run: terraform apply -auto-approve
 
+        - name: Upload index.html to S3
+          run: |
+            aws s3 cp index.html s3://my-test-bucket-1709200316042000-bd/index.html --acl public-read
+
         - name: Output Bucket Website URL
           run: echo "S3 Bucket Website URL:${{ steps.terraform.outputs.bucket_website_url }}"
            
