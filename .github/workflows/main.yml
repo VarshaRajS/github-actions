@@ -38,8 +38,5 @@ jobs:
 
         - name: Output Bucket Website URL
           run: echo "S3 Bucket Website URL:${{ steps.terraform.outputs.bucket_website_url }}"
-
-        - name: destroy the resources
-          run : terraform destroy -auto-approve
            
       
