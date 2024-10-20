@@ -76,7 +76,7 @@ resource "aws_s3_bucket_policy" "my_bucket_policy" {
 	"Effect": "Allow",
 	"Principal": "*", 
 	"Action": "s3:GetObject", 
-	"Resource": "arn:aws:s3:::web-hostings/" 
+	"Resource": "arn:aws:s3:::my-test-bucket-1709200316042000-bd/*" 
      }
     ]
   })
