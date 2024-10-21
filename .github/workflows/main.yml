@@ -36,6 +36,9 @@ jobs:
           if: github.ref == 'refs/heads/main'
           run: terraform apply -auto-approve
 
+        - name: Deploy static site to S3 bucket
+          run: aws s3 sync . s3://my-test-bucket-1709200316042000-bd --delete
+
         - name: Output Bucket Website URL
           run: echo "S3 Bucket Website URL:${{ steps.terraform.outputs.bucket_website_url }}"
            
